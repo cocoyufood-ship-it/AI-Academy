@@ -53,6 +53,14 @@
                 </div>
             </div>
         </div>
+
+        <div id="community-cta" class="mt-16 p-10 bg-[#f9f8f5] border border-gray-200 text-center rounded-sm">
+            <h3 class="font-serif text-2xl mb-4 text-[#705335]">✨ 想要持續磨練你的 AI 創作力？</h3>
+            <p class="text-gray-600 mb-8 max-w-md mx-auto leading-relaxed">歡迎加入「AI 咒語大全」社團，與可可老師及數千名學員交流，解鎖更多進階指令咒語，讓你的創作力持續進化！</p>
+            <a href="https://www.facebook.com/share/g/1AUHPo18Mh/" target="_blank" class="inline-block bg-[#1a1a1a] text-white px-10 py-4 hover:bg-[#333] transition-all tracking-widest text-sm uppercase">
+                立即加入社團磨練創作力
+            </a>
+        </div>
     </main>
 
     <script>
@@ -83,7 +91,6 @@
             const chap = data[id];
             document.getElementById('chap-title').innerText = chap.title;
             document.getElementById('chap-desc').innerHTML = chap.desc;
-            // 沙盒現在對所有章節開啟
             document.getElementById('sandbox').classList.toggle('hidden', !chap.sandbox);
             if(window.MathJax) MathJax.typeset();
         }
