@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI全域操盤手：電子書預覽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+TC:wght@300;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #fcfbf9; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-serif { font-family: 'Noto Serif TC', serif; }
+        .prose h3 { font-weight: 700; color: #1a1a1a; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .math-inline { display: inline-block; vertical-align: middle; font-style: italic; }
+    </style>
+</head>
+<body class="text-gray-900 pb-20">
+
+    <header class="max-w-4xl mx-auto pt-20 pb-10 px-6 text-center border-b border-gray-200">
+        <div class="font-cinzel text-sm tracking-[0.5em] text-[#705335] mb-4">THE AI ORCHESTRATOR</div>
+        <h1 class="font-serif text-4xl md:text-5xl text-gray-900 leading-tight mb-6">AI 全域操盤手<br>從零到變現的自動化大禮包</h1>
+        <p class="text-gray-600 max-w-xl mx-auto italic">「真正厲害的人，不是會用AI的人，而是能指揮AI的人。」</p>
+    </header>
+
+    <nav class="max-w-4xl mx-auto px-6 py-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <button onclick="showChapter('chap1')" class="p-4 border border-gray-300 hover:bg-[#705335] hover:text-white transition-all text-sm font-medium">01 萬用 Prompt</button>
+            <button onclick="showChapter('chap2')" class="p-4 border border-gray-300 hover:bg-[#705335] hover:text-white transition-all text-sm font-medium">02 短影音腳本</button>
+            <button onclick="showChapter('chap3')" class="p-4 border border-gray-300 hover:bg-[#705335] hover:text-white transition-all text-sm font-medium">03 自動化 SOP</button>
+            <button onclick="showChapter('chap4')" class="p-4 border border-gray-300 hover:bg-[#705335] hover:text-white transition-all text-sm font-medium">04 商業變現</button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6">
+        <div id="content-display" class="bg-white p-10 shadow-sm border border-gray-100 min-h-[400px]">
+            <h2 id="chap-title" class="font-serif text-3xl mb-6 text-gray-900">歡迎開啟操盤手手冊</h2>
+            <div id="chap-desc" class="prose max-w-none text-gray-700 leading-relaxed">點擊上方按鈕，探索由郁可可老師精心規劃的四大自動化變現模塊，開啟你的指揮官之旅。</div>
+            
+            <div id="sandbox" class="hidden mt-10 p-8 bg-gray-50 border-l-4 border-[#705335]">
+                <h3 class="font-bold text-lg mb-4 font-serif text-[#705335]">💡 AI 操盤手即時生成沙盒</h3>
+                <div class="space-y-4">
+                    <select id="role" class="w-full p-3 border border-gray-300 bg-white">
+                        <option value="資深社群行銷經理">資深社群行銷經理</option>
+                        <option value="精品美學諮詢顧問">精品美學諮詢顧問</option>
+                        <option value="專業影音內容總監">專業影音內容總監</option>
+                        <option value="AI 自動化架構師">AI 自動化架構師</option>
+                    </select>
+                    <input type="text" id="context" placeholder="輸入你想執行的任務脈絡..." class="w-full p-3 border border-gray-300">
+                    <button onclick="generatePrompt()" class="w-full bg-[#705335] text-white px-6 py-3 font-medium hover:bg-[#5a432b] transition-colors">生成專屬指令</button>
+                    <div id="result" class="mt-4 p-5 bg-white border border-gray-200 font-mono text-sm text-gray-800 whitespace-pre-wrap">請輸入上方參數並點擊生成...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const data = {
+            chap1: { 
+                title: "01 基礎萬用 Prompt 聖經", 
+                desc: "掌握核心邏輯，讓 AI 成為你的高階秘書。透過黃金公式： \\( \\text{Role} + \\text{Context} + \\text{Format} \\) ，精準調教 AI 語氣，告別機器感。", 
+                sandbox: true 
+            },
+            chap2: { 
+                title: "02 爆款短影音 AI 腳本", 
+                desc: "融合記者敏銳度與行銷學，解構「黃金 3 秒開頭 ＋ 情緒共鳴 ＋ 導購行動 (CTA)」的爆款公式。從選題到音樂踩點，用 AI 一站式搞定。", 
+                sandbox: true 
+            },
+            chap3: { 
+                title: "03 高效 AI 多工 SOP", 
+                desc: "拒絕重複勞動！打造「ChatGPT -> Midjourney -> Suno」的一條龍自動化產線，讓一人也能擁有專屬的虛擬行銷團隊。", 
+                sandbox: true 
+            },
+            chap4: { 
+                title: "04 高端品牌變現漏斗", 
+                desc: "從流量進入到商業轉化，建立屬於你的護城河。揭密如何將社群貼文、互動工具與 LINE 官方帳號進行自動化串聯，打造高價值的諮詢閉環。", 
+                sandbox: true 
+            }
+        };
+
+        function showChapter(id) {
+            const chap = data[id];
+            document.getElementById('chap-title').innerText = chap.title;
+            document.getElementById('chap-desc').innerHTML = chap.desc;
+            // 沙盒現在對所有章節開啟
+            document.getElementById('sandbox').classList.toggle('hidden', !chap.sandbox);
+            if(window.MathJax) MathJax.typeset();
+        }
+
+        function generatePrompt() {
+            const r = document.getElementById('role').value;
+            const c = document.getElementById('context').value;
+            const res = `[角色設定]: 你是一位專業的${r}，擁有敏銳的市場洞察力與高端審美。
+[任務脈絡]: ${c}
+[輸出格式]: 請以專業且具備行銷洞察的語氣撰寫，並強調品牌核心價值，結構清晰，層次分明。`;
+            document.getElementById('result').innerText = res;
+        }
+    </script>
+</body>
+</html>
